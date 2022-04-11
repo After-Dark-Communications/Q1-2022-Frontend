@@ -4,8 +4,11 @@ import Image from "next/image";
 import { NavBar } from "../components/containers/Nav";
 import styles from "../styles/Home.module.css";
 import { Box } from "../components/common/Box";
-
+import { theme } from "../styles/theme";
+import userstories from "../public/icons/sprint2userStories.png";
 const Home: NextPage = () => {
+  const bruh = 0;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,25 +17,25 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Box spaceAround>
+      <Box row>
         <NavBar />
 
-        <main className={styles.main}>
-          <h1 className={styles.title}>Welcome to GROUP5 project</h1>
-        </main>
+        <Box css={{ padding: "5em" }}>
+          <h1 style={{ fontStyle: "italic" }}>Sprint 2 Delivery</h1>
+          <h3>User Stories:</h3>
+          <Image src={userstories} alt="userstories" />
+          <br></br>
+          <a
+            href="https://survey-9.group6.appsemble.app/en/survey"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <h3 style={{ color: `${theme.colors.voilet100}` }}>
+              Appsemble Form
+            </h3>
+          </a>
+        </Box>
       </Box>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 };
