@@ -26,10 +26,10 @@ export const Box = styled(animated.div, {
         flexDirection: "column",
       },
     },
-    spaceAround: {
+    spaceBetween: {
       true: {
         ...flexBox,
-        justifyContent: "space-around",
+        justifyContent: "space-between",
       },
     },
     center: {
