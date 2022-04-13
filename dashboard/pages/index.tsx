@@ -20,10 +20,17 @@ const Home: NextPage = () => {
       <Box row>
         <NavBar />
 
-        <Box css={{ padding: "5em" }}>
+        <Box css={{ padding: "5em", minWidth: "2000px", minHeight: "1500px" ,textAlign:'center' }}>
           <h1 style={{ fontStyle: "italic" }}>Sprint 2 Delivery</h1>
           <h3>User Stories:</h3>
-          <Image src={userstories} alt="userstories" />
+          <Image
+            src={userstories}
+            style={{ minWidth: "1000px", minHeight: "500px" }}
+            layout="responsive"
+            unoptimized={true}
+            loading="eager"
+            alt="userstories"
+          />
           <br></br>
           <a
             href="https://survey-9.group6.appsemble.app/en/survey"

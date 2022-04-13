@@ -6,7 +6,7 @@ export const TableRow = styled("tr", {
 });
 
 export const Table = styled("table", {
-  width: "70vw",
+  width: "50vw",
   "tr:nth-child(even)": { background: theme.colors.gray600 },
   borderRadius: "30px",
   th: {
