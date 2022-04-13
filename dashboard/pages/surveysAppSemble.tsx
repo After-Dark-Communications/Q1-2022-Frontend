@@ -3,40 +3,106 @@ import { PieChart } from "../components/Charts/Pie";
 import { Box } from "../components/common/Box";
 import { Table } from "../components/common/Table";
 import { NavBar } from "../components/containers/Nav";
-import { Survey } from "../components/containers/Survey";
+import { Survey, SurveyProps } from "../components/containers/Survey";
 import { SurveyAppSemble } from "../components/containers/SurveyAppsemble";
 
 // import { surveys } from "../constants";
 import { theme } from "../styles/theme";
 const axios = require("axios").default;
 
-const Header = (): JSX.Element => {
-  let counter = 0;
+const SurveysAPI = () => {
+  const [surveys, setSurveys] = useState<[]>();
+  const [displayChart, setDisplayChart] = useState(false);
+  const [headerPie, setHeader] = useState("");
+  const [pieChartData, setPieChartData] = useState([]);
+  const [newChartData, setNewChartData] = useState<
+    {
+      instances: any;
+      instance: any;
+    }[]
+  >([]);
   const headers = [
     "ID",
     "Positive Experience",
     "Dinner Rating",
     "Food Rating",
-    "Rating Feedback",
+    "Waiter Service",
   ];
 
-  return (
-    <>
-      {headers.map((header, index) => {
-        return <th key={index}>{header}</th>;
-      })}
-    </>
-  );
-};
-const SurveysAPI = () => {
-  const [surveys, setSurveys] = useState<[]>();
+  useEffect(() => {
+    axios
+      .get("https://appsemble.app/api/apps/232/resources/answer")
+      .then((resp: any) => {
+        setSurveys(resp.data);
+      });
+
+    surveys?.map((survey) => console.log(survey));
+  }, []);
+
+  const camelCaseHeader = (header: string) => {
+    switch (header) {
+      case "Positive Experience":
+        return "positiveExperience";
+      case "Dinner Rating":
+        return "dinnerRating";
+      case "Food Rating":
+        return "foodRating";
+      case "Waiter Service":
+        return "waiterService";
+      default:
+        return "";
+    }
+  };
+
+  const handlePieClick = (header: string) => {
+    setPieChartData([]);
+    const camelHeader = camelCaseHeader(header);
+    setHeader(header);
+    surveys!.forEach((survey) => {
+      setPieChartData((prevData) => [...prevData, survey[camelHeader]]);
+    });
+
+    handleDataCorrectlly();
+  };
+
+  const handleDataCorrectlly = () => {
+    const newArray = Array.from(new Set(pieChartData));
+    setNewChartData([]);
+
+    newArray.map((instance, index) => {
+      const instances = pieChartData.filter((i) => i === instance).length;
+      //@ts-ignore
+      setNewChartData((prevData) => [...prevData, { instances, instance }]);
+    });
+    console.log(newChartData);
+
+    setDisplayChart(true);
+  };
+
+  const Header = (): JSX.Element => {
+    return (
+      <>
+        {headers.map((header, index) => {
+          return (
+            <th
+              onClick={() => handlePieClick(header)}
+              key={index}
+              style={{ cursor: "pointer" }}
+            >
+              {header}
+            </th>
+          );
+        })}
+      </>
+    );
+  };
 
   const dataPie = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: newChartData.map((i) => i.instance),
     datasets: [
       {
         label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        data: newChartData.map((i) => i.instances),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -58,23 +124,14 @@ const SurveysAPI = () => {
     ],
   };
 
-  useEffect(() => {
-    axios
-      .get("https://appsemble.app/api/apps/232/resources/answer")
-      .then((resp: any) => {
-        console.log(resp.data);
-        setSurveys(resp.data);
-      });
-
-    surveys?.map((survey) => console.log(survey));
-  }, []);
-
   return (
     <Box row>
       <NavBar />
-      <Box column>
-        <Box css={{ padding: "4em" }}>
-          <h1>Surveys</h1>
+      <Box row>
+        <Box css={{ padding: "2em" }}>
+          <a onClick={() => setDisplayChart(true)}>
+            <h1 style={{ cursor: "pointer" }}>Surveys</h1>
+          </a>
 
           <Table id="surveys">
             <tbody>
@@ -82,25 +139,30 @@ const SurveysAPI = () => {
                 <Header />
               </tr>
 
-              {surveys?.map((survey: any) => {
-                return (
-                  <SurveyAppSemble
-                    key={survey.id}
-                    id={survey.id}
-                    positiveExperience={survey.positiveExperience}
-                    dinnerRating={survey.dinnerRating}
-                    foodRating={survey.foodRating}
-                    waiterService={survey.waiterService}
-                  />
-                );
-              })}
+              {surveys
+                ?.sort((a: SurveyProps, b: SurveyProps) =>
+                  a.id > b.id ? 1 : -1
+                )
+                .map((survey: any) => {
+                  return (
+                    <SurveyAppSemble
+                      key={survey.id}
+                      id={survey.id}
+                      positiveExperience={survey.positiveExperience}
+                      dinnerRating={survey.dinnerRating}
+                      foodRating={survey.foodRating}
+                      waiterService={survey.waiterService}
+                    />
+                  );
+                })}
             </tbody>
           </Table>
         </Box>
-        <Box row spaceBetween css={{ width: "500px" }}>
-          <PieChart data={dataPie} />
-          <PieChart data={dataPie} />
-        </Box>
+        {displayChart && (
+          <Box row center css={{ width: "550px", margin: "150px 100px" }}>
+            <PieChart data={dataPie} />
+          </Box>
+        )}
       </Box>
     </Box>
   );

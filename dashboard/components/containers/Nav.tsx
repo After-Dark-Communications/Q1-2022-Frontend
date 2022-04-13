@@ -40,11 +40,11 @@ export const NavBar = () => {
         <Link href="/surveys" passHref>
           <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
             <Activity />
-            <ListItem navBarItem>Dashboard</ListItem>
+            <ListItem navBarItem>Next Sprint</ListItem>
           </Box>
         </Link>
 
-        <Link href="/surveys" passHref>
+        {/* <Link href="/surveys" passHref>
           <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
             <Activity />
             <ListItem navBarItem>Templates</ListItem>
@@ -56,7 +56,7 @@ export const NavBar = () => {
             <Activity />
             <ListItem navBarItem>Analytics</ListItem>
           </Box>
-        </Link>
+        </Link> */}
       </List>
     </Box>
   );
