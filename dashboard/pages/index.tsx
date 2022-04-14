@@ -6,9 +6,8 @@ import styles from "../styles/Home.module.css";
 import { Box } from "../components/common/Box";
 import { theme } from "../styles/theme";
 import userstories from "../public/icons/sprint2userStories.png";
+import dim from "../public/icons/dim-logo.png";
 const Home: NextPage = () => {
-  const bruh = 0;
-
   return (
     <div className={styles.container}>
       <Head>
@@ -20,27 +19,13 @@ const Home: NextPage = () => {
       <Box row>
         <NavBar />
 
-        <Box css={{ padding: "5em", minWidth: "2000px", minHeight: "1500px" ,textAlign:'center' }}>
-          <h1 style={{ fontStyle: "italic" }}>Sprint 2 Delivery</h1>
-          <h3>User Stories:</h3>
-          <Image
-            src={userstories}
-            style={{ minWidth: "1000px", minHeight: "500px" }}
-            layout="responsive"
-            unoptimized={true}
-            loading="eager"
-            alt="userstories"
-          />
-          <br></br>
-          <a
-            href="https://survey-9.group6.appsemble.app/en/survey"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <h3 style={{ color: `${theme.colors.voilet100}` }}>
-              Appsemble Form
-            </h3>
-          </a>
+        <Box
+          css={{
+            padding: "5em",
+            width: "900px",
+          }}
+        >
+          <Image src={dim} alt="dim" />
         </Box>
       </Box>
     </div>

@@ -3,8 +3,10 @@ import { PieChart } from "../components/Charts/Pie";
 import { Box } from "../components/common/Box";
 import { Table } from "../components/common/Table";
 import { NavBar } from "../components/containers/Nav";
-import { Survey, SurveyProps } from "../components/containers/Survey";
-import { SurveyAppSemble } from "../components/containers/SurveyAppsemble";
+import {
+  SurveyAppSemble,
+  SurveyProps,
+} from "../components/containers/SurveyAppsemble";
 
 // import { surveys } from "../constants";
 import { theme } from "../styles/theme";
@@ -27,6 +29,7 @@ const SurveysAPI = () => {
     "Dinner Rating",
     "Food Rating",
     "Waiter Service",
+    "Considering DIM",
   ];
 
   useEffect(() => {
@@ -49,6 +52,8 @@ const SurveysAPI = () => {
         return "foodRating";
       case "Waiter Service":
         return "waiterService";
+      case "Considering DIM":
+        return "consideringDIM";
       default:
         return "";
     }
@@ -74,7 +79,6 @@ const SurveysAPI = () => {
       //@ts-ignore
       setNewChartData((prevData) => [...prevData, { instances, instance }]);
     });
-    console.log(newChartData);
 
     setDisplayChart(true);
   };
@@ -143,11 +147,12 @@ const SurveysAPI = () => {
                 ?.sort((a: SurveyProps, b: SurveyProps) =>
                   a.id > b.id ? 1 : -1
                 )
-                .map((survey: any) => {
+                .map((survey: SurveyProps) => {
                   return (
                     <SurveyAppSemble
                       key={survey.id}
                       id={survey.id}
+                      consideringDIM={survey.consideringDIM}
                       positiveExperience={survey.positiveExperience}
                       dinnerRating={survey.dinnerRating}
                       foodRating={survey.foodRating}

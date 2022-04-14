@@ -30,17 +30,21 @@ export const NavBar = () => {
           </Box>
         </Link>
 
+        <a
+          href="https://survey-9.group6.appsemble.app/en/survey"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
+            <Activity />
+            <ListItem navBarItem>Submit Survey</ListItem>
+          </Box>
+        </a>
+
         <Link href="/surveysAppSemble" passHref>
           <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
             <Activity />
             <ListItem navBarItem>Surveys</ListItem>
-          </Box>
-        </Link>
-
-        <Link href="/surveys" passHref>
-          <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
-            <Activity />
-            <ListItem navBarItem>Next Sprint</ListItem>
           </Box>
         </Link>
 
