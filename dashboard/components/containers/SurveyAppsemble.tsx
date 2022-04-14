@@ -26,15 +26,15 @@ export type SurveyProps = {
 export const SurveyAppSemble: React.FC<SurveyProps> = (survey) => {
   const condiserDIM = (response: number) => {
     switch (response) {
-      case 1:
+      case 0:
         return "Definitely not";
-      case 2:
+      case 1:
         return "Probably not";
-      case 3:
+      case 2:
         return "Possibly";
-      case 4:
+      case 3:
         return "Probably ";
-      case 5:
+      case 4:
         return "Definitely";
       default:
         return "No";
