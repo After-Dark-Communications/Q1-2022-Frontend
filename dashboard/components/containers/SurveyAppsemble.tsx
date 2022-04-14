@@ -48,7 +48,7 @@ export const SurveyAppSemble: React.FC<SurveyProps> = (survey) => {
         <td>{survey.dinnerRating}</td>
         <td>{survey.foodRating}</td>
         <td>{survey.waiterService}</td>
-        <td>{condiserDIM(survey.consideringDIM)}</td>
+        <td>{condiserDIM(survey.consideringDIM!)}</td>
       </TableRow>
     </>
   );
