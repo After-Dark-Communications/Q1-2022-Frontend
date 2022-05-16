@@ -14,8 +14,6 @@ import {
   SurveyProps,
 } from "../../components/containers/SurveyAppsemble";
 
-// import { surveys } from "../constants";
-import { theme } from "../../styles/theme";
 const axios = require("axios").default;
 
 const SurveysDIM = () => {
@@ -29,6 +27,7 @@ const SurveysDIM = () => {
       instance: any;
     }[]
   >([]);
+
   const headers = [
     "Name",
     "Description",
@@ -43,8 +42,6 @@ const SurveysDIM = () => {
       .then((resp: any) => {
         setSurveys(resp.data);
       });
-
-    surveys?.map((survey) => console.log(survey));
   }, []);
 
   const camelCaseHeader = (header: string) => {
@@ -138,7 +135,7 @@ const SurveysDIM = () => {
             <h1 style={{ cursor: "pointer" }}>Surveys</h1>
           </a>
 
-          <Table id="surveys" css={{ width: "1200px" }}>
+          <Table id="surveys" css={{ width: "80vw" }}>
             <tbody>
               <tr>
                 <Header />
@@ -156,7 +153,7 @@ const SurveysDIM = () => {
                       name={survey.name}
                       description={survey.description}
                       questions={survey.questions}
-                      createdAt={survey.created}
+                      createdAt={new Date(survey.created).toUTCString()}
                       visibility={survey.visibility}
                     />
                   );

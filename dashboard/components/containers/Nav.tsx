@@ -7,6 +7,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Activity } from "../../public/SVG/Activity";
 import { Home } from "../../public/SVG/Home";
+import { Table } from "../../public/SVG/Table";
+import { Add } from "../../public/SVG/Add";
+import { Settings } from "../../public/SVG/Settings";
+import { Analytics } from "../../public/SVG/Analytics";
 
 export const NavBar = () => {
   return (
@@ -14,7 +18,7 @@ export const NavBar = () => {
       column
       style={{
         left: 0,
-        width: "250px",
+        width: "190px",
         backgroundColor: `${theme.colors.gray500}`,
         position: "sticky",
         height: "100vh",
@@ -30,7 +34,7 @@ export const NavBar = () => {
           </Box>
         </Link>
 
-        <a
+        {/* <a
           href="https://survey-9.group6.appsemble.app/en/survey"
           target="_blank"
           rel="noreferrer"
@@ -39,18 +43,18 @@ export const NavBar = () => {
             <Activity />
             <ListItem navBarItem>Submit Survey</ListItem>
           </Box>
-        </a>
+        </a> */}
 
-        <Link href="/surveysAppSemble" passHref>
+        {/* <Link href="/surveysAppSemble" passHref>
           <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
             <Activity />
             <ListItem navBarItem>Appsemble Surveys</ListItem>
           </Box>
-        </Link>
+        </Link> */}
 
         <Link href="/createSurvey" passHref>
           <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
-            <Activity />
+            <Add />
             <ListItem navBarItem>Create Survey</ListItem>
           </Box>
         </Link>
@@ -64,24 +68,44 @@ export const NavBar = () => {
 
         <Link href="/surveys" passHref>
           <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
-            <Activity />
+            <Table />
             <ListItem navBarItem>DIM Surveys</ListItem>
           </Box>
         </Link>
 
-        {/* <Link href="/surveys" passHref>
-          <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
-            <Activity />
-            <ListItem navBarItem>Templates</ListItem>
+        <Link href="/surveys" passHref>
+          <Box
+            row
+            css={{
+              backgroundColor: "transparent",
+              gap: "10px",
+              marginLeft: "-2px",
+            }}
+          >
+            <Settings />
+            <ListItem navBarItem css={{ marginLeft: "-4px" }}>
+              {" "}
+              Settings
+            </ListItem>
           </Box>
         </Link>
 
         <Link href="/surveys" passHref>
-          <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
-            <Activity />
-            <ListItem navBarItem>Analytics</ListItem>
+          <Box
+            row
+            css={{
+              backgroundColor: "transparent",
+              gap: "10px",
+              marginLeft: "-2px",
+            }}
+          >
+            <Analytics />
+            <ListItem navBarItem css={{ marginLeft: "-4px" }}>
+              {" "}
+              Analytics
+            </ListItem>
           </Box>
-        </Link> */}
+        </Link>
       </List>
     </Box>
   );

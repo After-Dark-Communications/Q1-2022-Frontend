@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { Settings } from "../../public/SVG/Settings";
 import { Box } from "../common/Box";
 import { ListItem } from "../common/ListItem";
 import { TableRow } from "../common/Table";
@@ -31,16 +32,18 @@ export const SurveyAPI: React.FC<SurveyAPIProps> = ({
   createdAt,
   visibility,
 }) => {
-  console.log(_id);
   return (
-    <Link href={`/surveys/${_id}`} passHref>
-      <TableRow key={_id} css={{ cursor: "pointer" }}>
-        <td>{name}</td>
-        <td>{description}</td>
-        <td>{questions[0].question}</td>
-        <td>{createdAt}</td>
-        <td>{visibility}</td>
-      </TableRow>
-    </Link>
+    <TableRow key={_id}>
+      <td>{name}</td>
+      <td>{description}</td>
+      <td>{questions[0].question}</td>
+      <td>{createdAt}</td>
+      <td>{visibility}</td>
+      <Link href={`/surveys/${_id}`} passHref>
+        <td style={{ cursor: "pointer" }}>
+          <Settings width={"22"} />
+        </td>
+      </Link>
+    </TableRow>
   );
 };

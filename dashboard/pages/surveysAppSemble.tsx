@@ -41,8 +41,6 @@ const SurveysAPI = () => {
       .then((resp: any) => {
         setSurveys(resp.data);
       });
-
-    surveys?.map((survey) => console.log(survey));
   }, []);
 
   const camelCaseHeader = (header: string) => {
