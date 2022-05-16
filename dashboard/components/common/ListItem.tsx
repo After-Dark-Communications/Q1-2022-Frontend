@@ -6,7 +6,7 @@ export const navBarItem = {
   justifyContent: "space-between",
   width: "200px",
   transition: "color 0.5s",
-  fontSize: "12px",
+  fontSize: "14px",
   "&:hover": {
     color: `${theme.colors.voilet100}`,
   },
@@ -19,5 +19,9 @@ export const ListItem = styled("li", {
     navBarItem: {
       true: navBarItem,
     },
+    active: {
+      true: { color: `${theme.colors.voilet100}` },
+    },
   },
+  length: 0,
 });
