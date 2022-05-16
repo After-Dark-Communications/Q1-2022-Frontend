@@ -1,21 +1,24 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
-import { Line } from "../components/Charts/Line";
-import { LineChart } from "../components/Charts/LinearChart";
-import { PieChart } from "../components/Charts/Pie";
-import { Box } from "../components/common/Box";
-import { Table } from "../components/common/Table";
-import { NavBar } from "../components/containers/Nav";
+import { Line } from "../../components/Charts/Line";
+import { PieChart } from "../../components/Charts/Pie";
+import { Box } from "../../components/common/Box";
+import { Table } from "../../components/common/Table";
+import {
+  SurveyAPI,
+  SurveyAPIProps,
+} from "../../components/containers/dimSurvey";
+import { NavBar } from "../../components/containers/Nav";
 import {
   SurveyAppSemble,
   SurveyProps,
-} from "../components/containers/SurveyAppsemble";
+} from "../../components/containers/SurveyAppsemble";
 
 // import { surveys } from "../constants";
-import { theme } from "../styles/theme";
+import { theme } from "../../styles/theme";
 const axios = require("axios").default;
 
-const SurveysAPI = () => {
+const SurveysDIM = () => {
   const [surveys, setSurveys] = useState<[]>();
   const [displayChart, setDisplayChart] = useState(false);
   const [headerPie, setHeader] = useState("");
@@ -27,17 +30,16 @@ const SurveysAPI = () => {
     }[]
   >([]);
   const headers = [
-    "ID",
-    "Positive Experience",
-    "Dinner Rating",
-    "Food Rating",
-    "Waiter Service",
-    "Considering DIM",
+    "Name",
+    "Description",
+    "Question",
+    "Created at",
+    "Visibility",
   ];
 
   useEffect(() => {
     axios
-      .get("https://appsemble.app/api/apps/232/resources/answer")
+      .get("https://q1-survey-service.herokuapp.com/api/surveys/")
       .then((resp: any) => {
         setSurveys(resp.data);
       });
@@ -91,11 +93,7 @@ const SurveysAPI = () => {
       <>
         {headers.map((header, index) => {
           return (
-            <th
-              onClick={() => handlePieClick(header)}
-              key={index}
-              style={{ cursor: "pointer" }}
-            >
+            <th key={index} style={{ cursor: "pointer" }}>
               {header}
             </th>
           );
@@ -132,62 +130,53 @@ const SurveysAPI = () => {
   };
 
   return (
-    <Box column>
+    <Box row>
+      <NavBar />
       <Box row>
-        <NavBar />
-        <Box row>
-          <Box css={{ padding: "2em" }}>
-            <a onClick={() => setDisplayChart(true)}>
-              <h1 style={{ cursor: "pointer" }}>Surveys</h1>
-            </a>
+        <Box css={{ padding: "2em" }}>
+          <a onClick={() => setDisplayChart(true)}>
+            <h1 style={{ cursor: "pointer" }}>Surveys</h1>
+          </a>
 
-            <Table id="surveys">
-              <tbody>
-                <tr>
-                  <Header />
-                </tr>
+          <Table id="surveys" css={{ width: "1200px" }}>
+            <tbody>
+              <tr>
+                <Header />
+              </tr>
 
-                {surveys
-                  ?.sort((a: SurveyProps, b: SurveyProps) =>
-                    a.id > b.id ? 1 : -1
-                  )
-                  .map((survey: SurveyProps) => {
-                    return (
-                      <SurveyAppSemble
-                        key={survey.id}
-                        id={survey.id}
-                        consideringDIM={survey.consideringDIM}
-                        positiveExperience={survey.positiveExperience}
-                        dinnerRating={survey.dinnerRating}
-                        foodRating={survey.foodRating}
-                        waiterService={survey.waiterService}
-                      />
-                    );
-                  })}
-              </tbody>
-            </Table>
-          </Box>
-          {displayChart && (
-            <Box
-              column
-              center
-              css={{ width: "350px", gap: "90px", marginLeft: "30px" }}
-            >
-              <Box css={{ width: "550px" }}>
-                <Line />
-              </Box>
-              <Box css={{ width: "400px", marginLeft: "100px" }}>
-                <PieChart data={dataPie} />
-              </Box>
-            </Box>
-          )}
+              {surveys
+                ?.sort((a: SurveyAPIProps, b: SurveyAPIProps) =>
+                  a.createdAt > b.createdAt ? 1 : -1
+                )
+                .map((survey: SurveyAPIProps) => {
+                  return (
+                    <SurveyAPI
+                      key={survey._id}
+                      _id={survey._id}
+                      name={survey.name}
+                      description={survey.description}
+                      questions={survey.questions}
+                      createdAt={survey.created}
+                      visibility={survey.visibility}
+                    />
+                  );
+                })}
+            </tbody>
+          </Table>
         </Box>
-      </Box>
-      <Box css={{ width: "1000px", margin: "250px ", marginTop: "50px" }}>
-        <LineChart />
+        {/* {displayChart && (
+          <Box
+            column
+            center
+            css={{ width: "450px", gap: "50px", margin: "150px 100px" }}
+          >
+            <PieChart data={dataPie} />
+            <Line />
+          </Box>
+        )} */}
       </Box>
     </Box>
   );
 };
 
-export default SurveysAPI;
+export default SurveysDIM;

@@ -14,7 +14,7 @@ export const NavBar = () => {
       column
       style={{
         left: 0,
-        width: "220px",
+        width: "250px",
         backgroundColor: `${theme.colors.gray500}`,
         position: "sticky",
         height: "100vh",
@@ -44,7 +44,28 @@ export const NavBar = () => {
         <Link href="/surveysAppSemble" passHref>
           <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
             <Activity />
-            <ListItem navBarItem>Surveys</ListItem>
+            <ListItem navBarItem>Appsemble Surveys</ListItem>
+          </Box>
+        </Link>
+
+        <Link href="/createSurvey" passHref>
+          <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
+            <Activity />
+            <ListItem navBarItem>Create Survey</ListItem>
+          </Box>
+        </Link>
+
+        {/* <Link href="/displaySurvey" passHref>
+          <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
+            <Activity />
+            <ListItem navBarItem>Display Survey</ListItem>
+          </Box>
+        </Link> */}
+
+        <Link href="/surveys" passHref>
+          <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
+            <Activity />
+            <ListItem navBarItem>DIM Surveys</ListItem>
           </Box>
         </Link>
 
