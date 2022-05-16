@@ -1,11 +1,10 @@
+// @ts-nocheck
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { NavBar } from "../components/containers/Nav";
 import styles from "../styles/Home.module.css";
 import { Box } from "../components/common/Box";
-import { theme } from "../styles/theme";
-import userstories from "../public/icons/sprint2userStories.png";
 import dim from "../public/icons/dim-logo.png";
 const Home: NextPage = () => {
   return (

@@ -39,4 +39,5 @@ export const Box = styled(animated.div, {
       },
     },
   },
+  length: 0,
 });
