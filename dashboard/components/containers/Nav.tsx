@@ -82,7 +82,7 @@ export const NavBar = () => {
               marginLeft: "-2px",
             }}
           >
-            <Settings />
+            <Settings width={"32"} />
             <ListItem navBarItem css={{ marginLeft: "-4px" }}>
               {" "}
               Settings
