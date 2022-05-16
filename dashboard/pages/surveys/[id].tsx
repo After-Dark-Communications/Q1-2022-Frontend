@@ -74,7 +74,7 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
                   fontSize: "16px",
-                  height: "60px",
+                  height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
@@ -90,10 +90,10 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
                   fontSize: "16px",
-                  height: "60px",
+                  height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
-                  paddingTop: "20px",
+                  paddingTop: "13px",
                   borderRadius: "6px",
                 }}
               ></textarea>
@@ -105,14 +105,14 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
               type="submit"
               value="Update"
               style={{
-                marginTop: "30px",
                 width: "100%",
-                height: "40px",
+                height: "50px",
                 background: `${theme.colors.voilet100}`,
                 border: `1px solid ${theme.colors.voilet100}`,
                 color: "white",
                 cursor: "pointer",
                 borderRadius: "4px",
+                fontSize: "16px",
               }}
             ></input>
           </Box>

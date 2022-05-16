@@ -116,7 +116,7 @@ const CreateSurvey: NextPage = () => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                minWidth: "550px",
+                minWidth: "450px",
                 gap: "20px",
                 borderRight: "1px solid gray ",
                 paddingRight: "100px",
@@ -126,11 +126,11 @@ const CreateSurvey: NextPage = () => {
               <input
                 style={{
                   backgroundColor: `${theme.colors.gray400}`,
-                  minWidth: "400px",
+                  minWidth: "350px",
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
                   fontSize: "16px",
-                  height: "60px",
+                  height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
@@ -148,11 +148,11 @@ const CreateSurvey: NextPage = () => {
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
                   fontSize: "16px",
-                  height: "60px",
+                  height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
-                  minWidth: "400px",
+                  minWidth: "350px",
                 }}
                 {...register("surveyDescription", {
                   required: "Question needs a title",
@@ -175,7 +175,7 @@ const CreateSurvey: NextPage = () => {
                   handlePostSurvey();
                 }}
               >
-                Submit survey to the API
+                Submit Survey
               </button>
             </form>
             <form
@@ -186,10 +186,10 @@ const CreateSurvey: NextPage = () => {
                 console.log(surveyQuestions);
               })}
               style={{
-                marginLeft: "40px",
+
                 display: "flex",
                 flexDirection: "column",
-                minWidth: "550px",
+                minWidth: "350px",
                 gap: "20px",
               }}
             >
@@ -202,7 +202,7 @@ const CreateSurvey: NextPage = () => {
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
                   fontSize: "16px",
-                  height: "60px",
+                  height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
@@ -220,7 +220,7 @@ const CreateSurvey: NextPage = () => {
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
                   fontSize: "16px",
-                  height: "60px",
+                  height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
@@ -241,6 +241,7 @@ const CreateSurvey: NextPage = () => {
                   color: "white",
                   cursor: "pointer",
                   borderRadius: "8px",
+                  fontSize: "15",
                 }}
                 type="submit"
                 value="Add Question"
