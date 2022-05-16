@@ -244,7 +244,7 @@ const CreateSurvey: NextPage = () => {
                         alignItems: "center",
                       }}
                     >
-                      <Text>{i + ". " + survey.questionTitle}</Text>
+                      <Text>{survey.questionTitle}</Text>
 
                       {survey.category == "text" ? (
                         <input

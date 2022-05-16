@@ -3,12 +3,13 @@ import { theme } from "../../styles/theme";
 
 export const TableRow = styled("tr", {
   backgroundColor: theme.colors.gray400,
+  length: 0,
 });
 
 export const Table = styled("table", {
-  width: "50vw",
+  width: "100vw",
   "tr:nth-child(even)": { background: theme.colors.gray600 },
-  borderRadius: "30px",
+
   th: {
     textAlign: "center",
     padding: "10px",
@@ -16,7 +17,7 @@ export const Table = styled("table", {
   },
   td: {
     textAlign: "center",
-    padding: "25px 10px",
-    borderRadius: "5px",
+    padding: "15px 10px",
   },
+  length: 0,
 });
