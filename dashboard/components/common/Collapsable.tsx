@@ -22,7 +22,7 @@ const Flex = styled("div", {
   length: 0,
 });
 const Text = styled("span", {
-  color: violet.violet11,
+  color: theme.colors.gray800,
   fontSize: 15,
   lineHeight: "25px",
   length: 0,
@@ -47,13 +47,14 @@ const IconButton = styled("button", {
 });
 
 const Repository = styled("div", {
-  backgroundColor: "white",
+  backgroundColor: theme.colors.gray400,
+  border: "1px solid $gray600",
   borderRadius: 4,
   margin: "10px 0",
   padding: 10,
   boxShadow: `0 2px 10px ${blackA.blackA7}`,
   length: 0,
-  width:'450px'
+  width: "450px",
 });
 type CollapsibleProps = {
   content: Question[];
@@ -64,7 +65,7 @@ export const CollapsibleDemo: React.FC<CollapsibleProps> = ({ content }) => {
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
       <Flex css={{ alignItems: "center", justifyContent: "space-between" }}>
-        <h3 style={{ color: `${theme.colors.gray800}` }}>
+        <h3 style={{ color: `${theme.colors.gray900}` }}>
           {" "}
           Questions (can not edit)
         </h3>

@@ -64,33 +64,37 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
           })}
         >
           <Box css={{ padding: "3em 5em", width: "700px" }}>
-            <Box css={{ borderBottom: "1px solid gray", marginBottom: "50px" }}>
-              <h3 style={{ color: `${theme.colors.gray800}` }}> Name</h3>
+            <Box css={{ marginBottom: "50px" }}>
+              <h3 style={{ color: `${theme.colors.gray900}` }}> Name</h3>
 
               <input
                 {...register("updateSurveyName")}
                 style={{
-                  backgroundColor: "transparent",
-                  color: `${theme.colors.gray900}`,
+                  backgroundColor: `${theme.colors.gray400}`,
+                  font: "inherit",
+                  color: `${theme.colors.gray800}`,
                   fontSize: "16px",
-                  height: "40px",
+                  height: "60px",
                   width: "100%",
-                  border: 0,
+                  border: `1px solid ${theme.colors.gray600}`,
+                  borderRadius: "6px",
                 }}
               ></input>
             </Box>
-            <Box css={{ borderBottom: "1px solid gray", marginBottom: "50px" }}>
-              <h3 style={{ color: `${theme.colors.gray800}` }}> Description</h3>
+            <Box css={{ marginBottom: "50px" }}>
+              <h3 style={{ color: `${theme.colors.gray900}` }}> Description</h3>
               <textarea
                 {...register("updateSurveyDescription")}
                 style={{
-                  backgroundColor: "transparent",
+                  backgroundColor: `${theme.colors.gray400}`,
                   font: "inherit",
-                  color: "white",
+                  color: `${theme.colors.gray800}`,
                   fontSize: "16px",
-                  height: "40px",
+                  height: "60px",
                   width: "100%",
-                  border: 0,
+                  border: `1px solid ${theme.colors.gray600}`,
+                  paddingTop: "20px",
+                  borderRadius: "6px",
                 }}
               ></textarea>
             </Box>
@@ -104,7 +108,7 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
                 marginTop: "30px",
                 width: "100%",
                 height: "40px",
-                background: "transparent",
+                background: `${theme.colors.voilet100}`,
                 border: `1px solid ${theme.colors.voilet100}`,
                 color: "white",
                 cursor: "pointer",

@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Text } from "../components/common/Text";
 import { theme } from "../styles/theme";
+import { ToastContainer, toast } from "react-toastify";
 
 const CreateSurvey: NextPage = () => {
   const {
@@ -76,7 +77,16 @@ const CreateSurvey: NextPage = () => {
       data: survey,
     }).then((data) => {
       console.log(data.data);
-      alert("Survey created succesfully");
+      toast("Created successfully!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        theme: "dark",
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     });
   };
 
@@ -95,7 +105,7 @@ const CreateSurvey: NextPage = () => {
             row
             css={{
               padding: "5em",
-              width: "900px",
+              width: "1200px",
               gap: "100px",
             }}
           >
@@ -106,50 +116,59 @@ const CreateSurvey: NextPage = () => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                width: "300px",
+                minWidth: "550px",
                 gap: "20px",
+                borderRight: "1px solid gray ",
+                paddingRight: "100px",
               }}
             >
               <label>Survey Title</label>
               <input
                 style={{
-                  minWidth: "300px",
-                  height: "40px",
+                  backgroundColor: `${theme.colors.gray400}`,
+                  minWidth: "400px",
+                  font: "inherit",
+                  color: `${theme.colors.gray800}`,
+                  fontSize: "16px",
+                  height: "60px",
+                  width: "100%",
+                  border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
-                  border: "1px solid gray",
-                  color: "white",
-                  backgroundColor: "transparent",
                   marginBottom: "20px",
                 }}
                 {...register("surveyTitle", {
                   required: "Question needs a title",
                 })}
-                placeholder="Question Title"
+                placeholder="Survey title"
               />
               <label>Survey description</label>
               <input
                 style={{
-                  minWidth: "300px",
-                  height: "40px",
+                  backgroundColor: `${theme.colors.gray400}`,
+                  font: "inherit",
+                  color: `${theme.colors.gray800}`,
+                  fontSize: "16px",
+                  height: "60px",
+                  width: "100%",
+                  border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
-                  border: "1px solid gray",
-                  color: "white",
-                  backgroundColor: "transparent",
+                  minWidth: "400px",
                 }}
                 {...register("surveyDescription", {
                   required: "Question needs a title",
                 })}
-                placeholder="Question Title"
+                placeholder="Survey description"
               />
               <button
                 style={{
-                  width: "300px",
-                  marginTop: "20px",
-                  backgroundColor: "black",
+                  marginTop: "30px",
+                  width: "100%",
+                  height: "50px",
+                  background: `${theme.colors.voilet100}`,
+                  border: `1px solid ${theme.colors.voilet100}`,
                   color: "white",
-                  padding: "10px",
-                  border: "1px solid white",
                   cursor: "pointer",
+                  borderRadius: "8px",
                 }}
                 onClick={(e) => {
                   e.preventDefault();
@@ -167,24 +186,26 @@ const CreateSurvey: NextPage = () => {
                 console.log(surveyQuestions);
               })}
               style={{
+                marginLeft: "40px",
                 display: "flex",
                 flexDirection: "column",
-                width: "300px",
+                minWidth: "550px",
                 gap: "20px",
               }}
             >
-              <label style={{ color: theme.colors.voilet100 }}>
+              <label style={{ color: theme.colors.gray900 }}>
                 Question Data
               </label>
               <input
                 style={{
-                  minWidth: "300px",
-
-                  height: "40px",
+                  backgroundColor: `${theme.colors.gray400}`,
+                  font: "inherit",
+                  color: `${theme.colors.gray800}`,
+                  fontSize: "16px",
+                  height: "60px",
+                  width: "100%",
+                  border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
-                  border: "1px solid gray",
-                  color: "white",
-                  backgroundColor: "transparent",
                 }}
                 {...register("questionTitle", {
                   required: "Question needs a title",
@@ -195,13 +216,14 @@ const CreateSurvey: NextPage = () => {
               <select
                 {...register("category")}
                 style={{
-                  minWidth: "100px",
-                  marginTop: "20px",
-                  height: "40px",
+                  backgroundColor: `${theme.colors.gray400}`,
+                  font: "inherit",
+                  color: `${theme.colors.gray800}`,
+                  fontSize: "16px",
+                  height: "60px",
+                  width: "100%",
+                  border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
-                  border: "1px solid gray",
-                  color: "white",
-                  backgroundColor: "transparent",
                 }}
               >
                 <option value="text">Text Input </option>
@@ -211,14 +233,14 @@ const CreateSurvey: NextPage = () => {
               {/* <p>{data}</p> */}
               <input
                 style={{
-                  minWidth: "100px",
-                  marginTop: "20px",
-                  height: "40px",
-                  borderRadius: "6px",
-                  border: "1px solid gray",
+                  marginTop: "30px",
+                  width: "100%",
+                  height: "50px",
+                  background: `${theme.colors.voilet100}`,
+                  border: `1px solid ${theme.colors.voilet100}`,
                   color: "white",
-                  backgroundColor: "transparent",
                   cursor: "pointer",
+                  borderRadius: "8px",
                 }}
                 type="submit"
                 value="Add Question"
@@ -302,6 +324,7 @@ const CreateSurvey: NextPage = () => {
           >
             Submit survey to LocalStorage
           </button> */}
+            <ToastContainer />
           </Box>
         </Box>
       </Box>

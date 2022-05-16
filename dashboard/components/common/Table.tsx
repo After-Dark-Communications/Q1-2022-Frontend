@@ -17,7 +17,8 @@ export const Table = styled("table", {
   },
   td: {
     textAlign: "center",
-    padding: "15px 10px",
+    padding: "10px",
+    fontSize: "14px",
   },
   length: 0,
 });
