@@ -12,6 +12,7 @@ import { Add } from "../../public/SVG/Add";
 import { Settings } from "../../public/SVG/Settings";
 import { Analytics } from "../../public/SVG/Analytics";
 import { useRouter } from "next/router";
+import { EmailSvg } from "../../public/SVG/Email";
 
 export const NavBar = () => {
   const { pathname } = useRouter();
@@ -43,7 +44,7 @@ export const NavBar = () => {
           <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
             <Add />
             <ListItem navBarItem active={pathname == "/createSurvey"}>
-              Create Survey
+              Create survey
             </ListItem>
           </Box>
         </Link>
@@ -53,6 +54,15 @@ export const NavBar = () => {
             <Table />
             <ListItem navBarItem active={pathname == "/surveys"}>
               Surveys
+            </ListItem>
+          </Box>
+        </Link>
+
+        <Link href="/emails" passHref>
+          <Box row css={{ backgroundColor: "transparent", gap: "10px" }}>
+            <EmailSvg />
+            <ListItem navBarItem active={pathname == "/emails"}>
+              Emails
             </ListItem>
           </Box>
         </Link>
