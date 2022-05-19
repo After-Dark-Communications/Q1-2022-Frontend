@@ -129,7 +129,7 @@ const CreateSurvey: NextPage = () => {
                   minWidth: "350px",
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
-                  fontSize: "16px",
+                  fontSize: "14px",
                   height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
@@ -147,7 +147,7 @@ const CreateSurvey: NextPage = () => {
                   backgroundColor: `${theme.colors.gray400}`,
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
-                  fontSize: "16px",
+                  fontSize: "14px",
                   height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
@@ -186,7 +186,6 @@ const CreateSurvey: NextPage = () => {
                 console.log(surveyQuestions);
               })}
               style={{
-
                 display: "flex",
                 flexDirection: "column",
                 minWidth: "350px",
@@ -201,7 +200,7 @@ const CreateSurvey: NextPage = () => {
                   backgroundColor: `${theme.colors.gray400}`,
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
-                  fontSize: "16px",
+                  fontSize: "14px",
                   height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
@@ -219,7 +218,7 @@ const CreateSurvey: NextPage = () => {
                   backgroundColor: `${theme.colors.gray400}`,
                   font: "inherit",
                   color: `${theme.colors.gray800}`,
-                  fontSize: "16px",
+                  fontSize: "14px",
                   height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,

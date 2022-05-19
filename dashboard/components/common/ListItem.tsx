@@ -5,10 +5,11 @@ export const navBarItem = {
   alignSelf: "center",
   justifyContent: "space-between",
   width: "200px",
+  color: `${theme.colors.gray800}`,
   transition: "color 0.5s",
   fontSize: "14px",
   "&:hover": {
-    color: `${theme.colors.voilet100}`,
+    color: `${theme.colors.gray900}`,
   },
 };
 
@@ -20,7 +21,7 @@ export const ListItem = styled("li", {
       true: navBarItem,
     },
     active: {
-      true: { color: `${theme.colors.voilet100}` },
+      true: { color: `${theme.colors.gray900} !important` },
     },
   },
   length: 0,
