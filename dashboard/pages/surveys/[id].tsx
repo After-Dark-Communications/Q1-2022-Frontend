@@ -129,7 +129,7 @@ export default SurveyPage;
 
 export const getStaticPaths = async () => {
   const res = await fetch(
-    "https://dinner-in-motion-project.ew.r.appspot.com/surveys/"
+    "https://dinner-in-motion-project.ew.r.appspot.com/surveys"
   );
   const data = await res.json();
 
