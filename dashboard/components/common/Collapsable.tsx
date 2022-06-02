@@ -65,10 +65,7 @@ export const CollapsibleDemo: React.FC<CollapsibleProps> = ({ content }) => {
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
       <Flex css={{ alignItems: "center", justifyContent: "space-between" }}>
-        <h3 style={{ color: `${theme.colors.gray900}` }}>
-          {" "}
-          Questions (can not edit)
-        </h3>
+        <h3 style={{ color: `${theme.colors.gray900}` }}> Questions</h3>
         <CollapsibleTrigger asChild>
           <IconButton>{open ? <Cross2Icon /> : <RowSpacingIcon />}</IconButton>
         </CollapsibleTrigger>
