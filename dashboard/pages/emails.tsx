@@ -38,7 +38,7 @@ const ConfigureEmail = () => {
   const handleSendEmail = () => {
     console.log(control._formValues.senderAddress);
     axios.post("https://dinner-in-motion-project.ew.r.appspot.com/email/send", {
-      email: control._formValues.senderAddress,
+      email: "lepadatum@mail.ru",
     });
   };
   return (

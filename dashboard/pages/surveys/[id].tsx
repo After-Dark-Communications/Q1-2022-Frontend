@@ -30,7 +30,7 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
   const handleUpdate = async (input: {}) => {
     await axios
       .patch(
-        `https://q1-survey-service.herokuapp.com/api/surveys/${survey._id}
+        `https://dinner-in-motion-project.ew.r.appspot.com/surveys/${survey._id}
     `,
         input
       )
@@ -129,7 +129,7 @@ export default SurveyPage;
 
 export const getStaticPaths = async () => {
   const res = await fetch(
-    "https://q1-survey-service.herokuapp.com/api/surveys/"
+    "https://dinner-in-motion-project.ew.r.appspot.com/surveys/"
   );
   const data = await res.json();
 
@@ -148,7 +148,7 @@ export const getStaticProps = async (context: { params: { id: any } }) => {
   const id = context.params.id;
 
   const response = await fetch(
-    "https://q1-survey-service.herokuapp.com/api/surveys/" + id
+    "https://dinner-in-motion-project.ew.r.appspot.com/surveys/" + id
   );
   const data = await response.json();
   console.log(data);

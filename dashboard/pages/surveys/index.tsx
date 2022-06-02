@@ -38,7 +38,7 @@ const SurveysDIM = () => {
 
   useEffect(() => {
     axios
-      .get("https://q1-survey-service.herokuapp.com/api/surveys/")
+      .get("https://dinner-in-motion-project.ew.r.appspot.com/surveys")
       .then((resp: any) => {
         setSurveys(resp.data);
       });
