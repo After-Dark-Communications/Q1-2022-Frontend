@@ -30,7 +30,7 @@ const Analytics = () => {
 
   useEffect(() => {
     axios
-      .get("http://q1-survey-service.herokuapp.com/api/surveys")
+      .get("https://q1-survey-service.herokuapp.com/api/surveys")
       .then((resp: any) => {
         setSurveys(resp.data);
       });

@@ -73,7 +73,7 @@ const CreateSurvey: NextPage = () => {
     console.log(survey);
     axios({
       method: "post",
-      url: "http://q1-survey-service.herokuapp.com/api/surveys/",
+      url: "https://q1-survey-service.herokuapp.com/api/surveys/",
       data: survey,
     }).then((data) => {
       console.log(data.data);
