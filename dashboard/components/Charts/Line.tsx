@@ -53,17 +53,17 @@ export const data = {
     {
       label: "Waiter Service ",
       data: labels.map(() => Math.floor(Math.random() * 100)),
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      backgroundColor: "rgb(255, 99, 132)",
     },
     {
       label: "Dinner Rating ",
       data: labels.map(() => Math.floor(Math.random() * 100)),
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      backgroundColor: "rgb(53, 162, 235)",
     },
     {
       label: "Food Rating ",
       data: labels.map(() => Math.floor(Math.random() * 100)),
-      backgroundColor: "rgba(2, 167, 13, 0.875)",
+      backgroundColor: "rgb(0, 166, 11)",
     },
   ],
 };

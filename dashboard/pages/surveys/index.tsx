@@ -38,7 +38,7 @@ const SurveysDIM = () => {
 
   useEffect(() => {
     axios
-      .get("https://dinner-in-motion-project.ew.r.appspot.com/surveys")
+      .get("http://q1-survey-service.herokuapp.com/api/surveys")
       .then((resp: any) => {
         setSurveys(resp.data);
       });
@@ -129,7 +129,7 @@ const SurveysDIM = () => {
   return (
     <Box row>
       <NavBar />
-      <Box row>
+      <Box column>
         <Box css={{ padding: "2em" }}>
           <a onClick={() => setDisplayChart(true)}>
             <h1 style={{ cursor: "pointer" }}>Surveys</h1>
@@ -161,7 +161,7 @@ const SurveysDIM = () => {
             </tbody>
           </Table>
         </Box>
-        {/* {displayChart && (
+        {!displayChart && (
           <Box
             column
             center
@@ -170,7 +170,7 @@ const SurveysDIM = () => {
             <PieChart data={dataPie} />
             <Line />
           </Box>
-        )} */}
+        )}
       </Box>
     </Box>
   );
