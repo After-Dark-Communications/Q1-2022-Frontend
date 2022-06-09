@@ -38,7 +38,7 @@ const SurveysDIM = () => {
 
   useEffect(() => {
     axios
-      .get("http://q1-survey-service.herokuapp.com/api/surveys")
+      .get("https://q1-survey-service.herokuapp.com/api/surveys")
       .then((resp: any) => {
         setSurveys(resp.data);
       });
@@ -161,16 +161,6 @@ const SurveysDIM = () => {
             </tbody>
           </Table>
         </Box>
-        {!displayChart && (
-          <Box
-            column
-            center
-            css={{ width: "450px", gap: "50px", margin: "150px 100px" }}
-          >
-            <PieChart data={dataPie} />
-            <Line />
-          </Box>
-        )}
       </Box>
     </Box>
   );
