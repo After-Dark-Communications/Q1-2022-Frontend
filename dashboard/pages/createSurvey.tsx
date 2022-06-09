@@ -73,7 +73,7 @@ const CreateSurvey: NextPage = () => {
     console.log(survey);
     axios({
       method: "post",
-      url: "https://dinner-in-motion-project.ew.r.appspot.com/surveys/",
+      url: "http://q1-survey-service.herokuapp.com/api/surveys/",
       data: survey,
     }).then((data) => {
       console.log(data.data);

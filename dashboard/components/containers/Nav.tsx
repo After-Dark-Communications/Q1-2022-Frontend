@@ -67,7 +67,7 @@ export const NavBar = () => {
           </Box>
         </Link>
 
-        <Link href="/surveys" passHref>
+        <Link href="/analytics" passHref>
           <Box
             row
             css={{
@@ -77,13 +77,13 @@ export const NavBar = () => {
             }}
           >
             <Analytics />
-            <ListItem navBarItem css={{ marginLeft: "-4px" }}>
+            <ListItem navBarItem active={pathname == "/analytics"} css={{ marginLeft: "-4px" }}>
               {" "}
               Analytics
             </ListItem>
           </Box>
         </Link>
-        <Link href="/surveys" passHref>
+        {/* <Link href="/surveys" passHref>
           <Box
             row
             css={{
@@ -98,7 +98,7 @@ export const NavBar = () => {
               Settings
             </ListItem>
           </Box>
-        </Link>
+        </Link> */}
       </List>
     </Box>
   );
