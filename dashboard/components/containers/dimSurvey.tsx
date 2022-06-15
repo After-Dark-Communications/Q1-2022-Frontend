@@ -34,7 +34,10 @@ export const SurveyAPI: React.FC<SurveyAPIProps> = ({
 }) => {
   return (
     <TableRow key={_id}>
-      <td>{name}</td>
+      <Link href={`/survey/${_id}`} passHref>
+        <td style={{ cursor: "pointer" }}>{name}</td>
+      </Link>
+
       <td>{description}</td>
       <td>{questions[0].question}</td>
       <td>{createdAt}</td>
