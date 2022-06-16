@@ -79,12 +79,12 @@ const Responses: React.FC<SurveyByIDProps> = ({ response }) => {
                 return (
                   // eslint-disable-next-line react/jsx-key
                   <Box
-                    key={resp._id + resp.surveyTaker}
+                    key={resp._id + resp.created}
                     css={{ borderBottom: "1px solid gray" }}
                   >
                     {resp.answers.map((answ: any) => {
                       return (
-                        <Box key={answ.id}>
+                        <Box key={answ.id + answ.created}>
                           <h3 style={{ color: `${theme.colors.gray800}` }}>
                             - {answ.question.question}
                           </h3>
