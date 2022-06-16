@@ -28,7 +28,9 @@ const UserSurvey: React.FC<SurveyByIDProps> = ({ survey }) => {
         const answer = {
           answer: data[key],
           question: {
+            //@ts-ignore
             question: survey.questions[key].question,
+            //@ts-ignore
             type: survey.questions[key].type,
             options: [],
             required: true,
