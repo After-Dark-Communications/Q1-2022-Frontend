@@ -20,7 +20,7 @@ export const NavBar = () => {
         left: 0,
         width: "190px",
         backgroundColor: `${theme.colors.gray500}`,
-        position: "sticky",
+        position: "fixed",
         height: "100vh",
         borderTopRightRadius: "50px",
         borderBottomRightRadius: "50px",
@@ -73,7 +73,11 @@ export const NavBar = () => {
             }}
           >
             <Analytics />
-            <ListItem navBarItem active={pathname == "/analytics"} css={{ marginLeft: "-4px" }}>
+            <ListItem
+              navBarItem
+              active={pathname == "/analytics"}
+              css={{ marginLeft: "-4px" }}
+            >
               {" "}
               Analytics
             </ListItem>

@@ -21,42 +21,33 @@ const UserSurvey: React.FC<SurveyByIDProps> = ({ survey }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleUpdate = async (data: any) => {
-    let responseArray: string[] = [];
-    const inputType = {
-      surveyTaker: "John Doe",
-      answers: [
-        {
-          answer: "I rate it 10 out of 10",
-          question: {
-            question: "How would you rate your experience?",
-            type: "text",
-            options: [],
-            required: true,
-          },
-        },
-      ],
-    };
+    let responseArray: any[] = [];
 
     for (var key in data) {
       if (data.hasOwnProperty(key)) {
-        console.log(data[key]);
-        // console.log(key);
-        responseArray.push(data[key]);
+        const answer = {
+          answer: data[key],
+          question: {
+            question: survey.questions[key].question,
+            type: survey.questions[key].type,
+            options: [],
+            required: true,
+          },
+        };
+        responseArray.push(answer);
       }
     }
-
     console.log(responseArray);
     const input = {
-      surveyTaker: "Mihail",
-      answers: inputType,
+      surveyTaker: "Good Jop",
+      answers: responseArray,
     };
-    console.log(input);
 
     await axios
       .post(
         `https://q1-survey-service.herokuapp.com/api/responses/${survey._id}
     `,
-        inputType
+        input
       )
       .then((data) => console.log(data));
   };
@@ -66,7 +57,7 @@ const UserSurvey: React.FC<SurveyByIDProps> = ({ survey }) => {
       column
       style={{
         height: "100vh",
-        margin: "5em 20em",
+        margin: "1em 20em",
         display: "flex",
         justifyContent: "center",
       }}

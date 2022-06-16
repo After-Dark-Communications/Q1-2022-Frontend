@@ -89,6 +89,9 @@ const CreateSurvey: NextPage = () => {
                 console.log(data);
                 setData(JSON.stringify(data));
                 setQuestions((surv) => [...surv, data]);
+                const title = document.getElementById("title");
+                title.value = "";
+                setValue("question", "");
                 console.log(surveyQuestions);
               })}
               style={{
@@ -102,6 +105,7 @@ const CreateSurvey: NextPage = () => {
                 Question Data
               </label>
               <input
+                id="title"
                 style={{
                   backgroundColor: `${theme.colors.gray400}`,
                   font: "inherit",
@@ -113,7 +117,7 @@ const CreateSurvey: NextPage = () => {
                   borderRadius: "6px",
                   padding: "5px",
                 }}
-                {...register("question")}
+                {...register("question", { required: "Required" })}
                 placeholder="Question Title"
               />
 

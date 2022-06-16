@@ -13,6 +13,7 @@ import { NavBar } from "../../components/containers/Nav";
 import { theme } from "../../styles/theme";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Router from "next/router";
 
 type SurveyByIDProps = {
   survey: SurveyAPIProps;
@@ -26,6 +27,29 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
     setValue("updateSurveyName", survey.name);
     setValue("updateSurveyDescription", survey.description);
   }, [setValue, survey.description, survey.name]);
+
+  const deleteSurvey = async () => {
+    await axios
+      .delete(
+        `https://q1-survey-service.herokuapp.com/api/surveys/${survey._id}`
+      )
+      .then((data) => {
+        toast("Deleted successfully!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          theme: "dark",
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          Router.push("/surveys");
+        }, 1000);
+        console.log(data);
+      });
+  };
 
   const handleUpdate = async (input: {}) => {
     await axios
@@ -78,10 +102,11 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
+                  padding: "10px",
                 }}
               ></input>
             </Box>
-            <Box css={{ marginBottom: "50px" }}>
+            <Box css={{ marginBottom: "20px" }}>
               <h3 style={{ color: `${theme.colors.gray900}` }}> Description</h3>
               <textarea
                 {...register("updateSurveyDescription")}
@@ -93,8 +118,9 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
                   height: "50px",
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
-                  paddingTop: "13px",
+                  paddingTop: "15px",
                   borderRadius: "6px",
+                  paddingLeft: "10px",
                 }}
               ></textarea>
             </Box>
@@ -115,6 +141,25 @@ const SurveyPage: React.FC<SurveyByIDProps> = ({ survey }) => {
                 fontSize: "16px",
               }}
             ></input>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                deleteSurvey();
+              }}
+              style={{
+                width: "100%",
+                height: "50px",
+                background: "red",
+                border: `1px solid ${theme.colors.red100}`,
+                color: "white",
+                cursor: "pointer",
+                borderRadius: "4px",
+                fontSize: "16px",
+                marginTop: "20px",
+              }}
+            >
+              Delete
+            </button>
           </Box>
         </form>
         <Box css={{ padding: "3em 5em" }}>
