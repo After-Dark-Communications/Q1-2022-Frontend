@@ -9,11 +9,14 @@ import { useEffect, useState } from "react";
 import { Text } from "../components/common/Text";
 import { theme } from "../styles/theme";
 import { ToastContainer, toast } from "react-toastify";
+import CollapsibleDemo from "../components/common/Collapsable";
+import Router from "next/router";
 
 const CreateSurvey: NextPage = () => {
   const {
     register,
     handleSubmit,
+    control,
     setValue,
     formState: { errors },
   } = useForm();
@@ -23,39 +26,12 @@ const CreateSurvey: NextPage = () => {
   const [surveyQuestions, setQuestions] = useState<[]>([]);
   const axios = require("axios").default;
 
-  type Survey = {
-    name: string;
-    description: string;
-    visibility: "public" | "private";
-    questions: [
-      {
-        question: string;
-        type: "text" | "number";
-        options: [];
-        required: boolean;
-      }
-    ];
-  };
-
-  // const survey: Survey = {
-  //   name: "Dinner",
-  //   description: "No description",
-  //   visibility: "private",
-  //   questions: [
-  //     {
-  //       question: "How would you rate it fam?",
-  //       type: "text",
-  //       options: [],
-  //       required: false,
-  //     },
-  //   ],
-  // };
-
   const handlePostSurvey = () => {
+    console.log(control);
     const filteredQuestions = [];
     surveyQuestions.forEach((question) => {
       const filteredQ = {
-        question: question.questionTitle,
+        question: question.question,
         type: question.category,
         options: [],
         required: false,
@@ -65,8 +41,8 @@ const CreateSurvey: NextPage = () => {
     console.log(filteredQuestions);
 
     const survey = {
-      name: surveyQuestions[0].surveyTitle,
-      description: surveyQuestions[0].surveyDescription,
+      name: control._formValues.surveyTitle,
+      description: control._formValues.surveyDescription,
       visibility: "public",
       questions: filteredQuestions,
     };
@@ -77,16 +53,11 @@ const CreateSurvey: NextPage = () => {
       data: survey,
     }).then((data) => {
       console.log(data.data);
-      toast("Created successfully!", {
-        position: "bottom-right",
-        autoClose: 5000,
-        theme: "dark",
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+
+      alert("Survey created successfully");
+      setTimeout(() => {
+        Router.push("/surveys");
+      }, 1000);
     });
   };
 
@@ -112,83 +83,21 @@ const CreateSurvey: NextPage = () => {
             {errors && errors.title && (
               <p style={{ color: "red" }}>{errors.title.message}</p>
             )}
-            <form
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                minWidth: "450px",
-                gap: "20px",
-                borderRight: "1px solid gray ",
-                paddingRight: "100px",
-              }}
-            >
-              <label>Survey Title</label>
-              <input
-                style={{
-                  backgroundColor: `${theme.colors.gray400}`,
-                  minWidth: "350px",
-                  font: "inherit",
-                  color: `${theme.colors.gray800}`,
-                  fontSize: "14px",
-                  height: "50px",
-                  width: "100%",
-                  border: `1px solid ${theme.colors.gray600}`,
-                  borderRadius: "6px",
-                  marginBottom: "20px",
-                }}
-                {...register("surveyTitle", {
-                  required: "Question needs a title",
-                })}
-                placeholder="Survey title"
-              />
-              <label>Survey description</label>
-              <input
-                style={{
-                  backgroundColor: `${theme.colors.gray400}`,
-                  font: "inherit",
-                  color: `${theme.colors.gray800}`,
-                  fontSize: "14px",
-                  height: "50px",
-                  width: "100%",
-                  border: `1px solid ${theme.colors.gray600}`,
-                  borderRadius: "6px",
-                  minWidth: "350px",
-                }}
-                {...register("surveyDescription", {
-                  required: "Question needs a title",
-                })}
-                placeholder="Survey description"
-              />
-              <button
-                style={{
-                  marginTop: "30px",
-                  width: "100%",
-                  height: "50px",
-                  background: `${theme.colors.voilet100}`,
-                  border: `1px solid ${theme.colors.voilet100}`,
-                  color: "white",
-                  cursor: "pointer",
-                  borderRadius: "8px",
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePostSurvey();
-                }}
-              >
-                Submit Survey
-              </button>
-            </form>
+
             <form
               onSubmit={handleSubmit((data) => {
                 console.log(data);
                 setData(JSON.stringify(data));
                 setQuestions((surv) => [...surv, data]);
+                const title = document.getElementById("title");
+                title.value = "";
+                setValue("question", "");
                 console.log(surveyQuestions);
               })}
               style={{
                 display: "flex",
                 flexDirection: "column",
-                minWidth: "350px",
+                minWidth: "450px",
                 gap: "20px",
               }}
             >
@@ -196,6 +105,7 @@ const CreateSurvey: NextPage = () => {
                 Question Data
               </label>
               <input
+                id="title"
                 style={{
                   backgroundColor: `${theme.colors.gray400}`,
                   font: "inherit",
@@ -205,10 +115,9 @@ const CreateSurvey: NextPage = () => {
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
+                  padding: "5px",
                 }}
-                {...register("questionTitle", {
-                  required: "Question needs a title",
-                })}
+                {...register("question", { required: "Required" })}
                 placeholder="Question Title"
               />
 
@@ -223,18 +132,16 @@ const CreateSurvey: NextPage = () => {
                   width: "100%",
                   border: `1px solid ${theme.colors.gray600}`,
                   borderRadius: "6px",
+                  padding: "5px",
                 }}
               >
                 <option value="text">Text Input </option>
                 <option value="number">Number</option>
               </select>
-              {/* <textarea {...register("aboutYou")} placeholder="About you" /> */}
-              {/* <p>{data}</p> */}
               <input
                 style={{
-                  marginTop: "30px",
                   width: "100%",
-                  height: "50px",
+                  height: "40px",
                   background: `${theme.colors.voilet100}`,
                   border: `1px solid ${theme.colors.voilet100}`,
                   color: "white",
@@ -247,85 +154,73 @@ const CreateSurvey: NextPage = () => {
               />
             </form>
 
-            <form>
-              <label>Questions</label>
-              {surveyQuestions &&
-                surveyQuestions.map((survey, i) => {
-                  return (
-                    <div
-                      key={survey.questionTitle + "i" + i + survey.category}
-                      style={{
-                        padding: "10px",
-                        border: "1px solid gray",
-                        borderRadius: "4px",
-                        marginTop: "20px",
-                        width: "360px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>{survey.questionTitle}</Text>
-
-                      {survey.category == "text" ? (
-                        <input
-                          style={{
-                            width: "300px",
-                            height: "40px",
-                            borderRadius: "6px",
-                            border: "1px solid white",
-                            color: "white",
-                            backgroundColor: "transparent",
-                          }}
-                        ></input>
-                      ) : (
-                        <select
-                          key={
-                            surveyQuestions.title +
-                            "i" +
-                            i +
-                            surveyQuestions.category
-                          }
-                          style={{
-                            width: "100px",
-                            height: "40px",
-                            borderRadius: "6px",
-                            border: "1px solid white",
-                            color: "white",
-                            backgroundColor: "transparent",
-                          }}
-                        >
-                          <option value="1">1 </option>
-                          <option value="2">2</option>
-                          <option value="3">3 </option>
-                          <option value="5">4 </option>
-                          <option value="5">5 </option>
-                        </select>
-                      )}
-                    </div>
-                  );
-                })}
-              {/* <input type="submit"></input> */}
-            </form>
-
-            {/* <button
-            style={{
-              width: "300px",
-              marginTop: "150px",
-              backgroundColor: "black",
-              color: "white",
-              padding: "10px",
-              border: "1px solid white",
-            }}
-            onClick={() =>
-              localStorage.setItem("surveys", JSON.stringify(surveys))
-            }
-          >
-            Submit survey to LocalStorage
-          </button> */}
-            <ToastContainer />
+            <Box style={{ marginTop: "-28px" }}>
+              <CollapsibleDemo content={surveyQuestions} />
+            </Box>
           </Box>
+          <form
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              maxWidth: "1150px",
+              gap: "10px",
+              paddingLeft: "5em",
+            }}
+          >
+            <label>Survey Title</label>
+            <input
+              style={{
+                backgroundColor: `${theme.colors.gray400}`,
+                minWidth: "350px",
+                font: "inherit",
+                color: `${theme.colors.gray800}`,
+                fontSize: "14px",
+                height: "50px",
+                width: "100%",
+                border: `1px solid ${theme.colors.gray600}`,
+                borderRadius: "6px",
+                marginBottom: "20px",
+                padding: "5px",
+              }}
+              {...register("surveyTitle")}
+              placeholder="Survey title"
+            />
+            <label>Survey description</label>
+            <input
+              style={{
+                backgroundColor: `${theme.colors.gray400}`,
+                font: "inherit",
+                color: `${theme.colors.gray800}`,
+                fontSize: "14px",
+                height: "50px",
+                width: "100%",
+                border: `1px solid ${theme.colors.gray600}`,
+                borderRadius: "6px",
+                minWidth: "350px",
+                padding: "5px",
+              }}
+              {...register("surveyDescription")}
+              placeholder="Survey description"
+            />
+            <button
+              style={{
+                width: "100%",
+                height: "50px",
+                background: `${theme.colors.voilet100}`,
+                border: `1px solid ${theme.colors.voilet100}`,
+                color: "white",
+                cursor: "pointer",
+                borderRadius: "8px",
+                marginTop: "10px",
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                handlePostSurvey();
+              }}
+            >
+              Submit Survey
+            </button>
+          </form>
         </Box>
       </Box>
     </div>

@@ -18,7 +18,26 @@ export type SurveyAPIProps = {
   name: string;
   questions: Question[];
   description: string;
-  responses: [{}];
+  responses: [
+    {
+      _id: string;
+      surveyTaker: string;
+      answers: [
+        {
+          _id: string;
+          answer: string;
+          question: {
+            _id: string;
+            question: string;
+            type: string;
+            options: [];
+            required: boolean;
+          };
+        }
+      ];
+      created: string;
+    }
+  ];
   createdAt: string;
   visibility: string;
 };
@@ -34,7 +53,10 @@ export const SurveyAPI: React.FC<SurveyAPIProps> = ({
 }) => {
   return (
     <TableRow key={_id}>
-      <td>{name}</td>
+      <Link href={`/survey/${_id}`} passHref>
+        <td style={{ cursor: "pointer" }}>{name}</td>
+      </Link>
+
       <td>{description}</td>
       <td>{questions[0].question}</td>
       <td>{createdAt}</td>
@@ -43,6 +65,9 @@ export const SurveyAPI: React.FC<SurveyAPIProps> = ({
         <td style={{ cursor: "pointer" }}>
           <Settings width={"22"} />
         </td>
+      </Link>
+      <Link href={`/responses/${_id}`} passHref>
+        <td style={{ cursor: "pointer" }}>Responses</td>
       </Link>
     </TableRow>
   );

@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #1b1c20;
+  margin-left: 90px;
 }
 
 a {
@@ -18,4 +20,3 @@ a {
 *:focus {
   outline: 1px solid #7230ff;
 }
-

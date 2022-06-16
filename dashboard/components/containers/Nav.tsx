@@ -2,14 +2,10 @@ import { Box } from "../common/Box";
 import { List } from "../common/List";
 import { ListItem } from "../common/ListItem";
 import { theme } from "../../styles/theme";
-import logo from "../../public/icons/dim-logo.png";
-import Image from "next/image";
 import Link from "next/link";
-import { Activity } from "../../public/SVG/Activity";
 import { Home } from "../../public/SVG/Home";
 import { Table } from "../../public/SVG/Table";
 import { Add } from "../../public/SVG/Add";
-import { Settings } from "../../public/SVG/Settings";
 import { Analytics } from "../../public/SVG/Analytics";
 import { useRouter } from "next/router";
 import { EmailSvg } from "../../public/SVG/Email";
@@ -24,7 +20,7 @@ export const NavBar = () => {
         left: 0,
         width: "190px",
         backgroundColor: `${theme.colors.gray500}`,
-        position: "sticky",
+        position: "fixed",
         height: "100vh",
         borderTopRightRadius: "50px",
         borderBottomRightRadius: "50px",
@@ -77,7 +73,11 @@ export const NavBar = () => {
             }}
           >
             <Analytics />
-            <ListItem navBarItem active={pathname == "/analytics"} css={{ marginLeft: "-4px" }}>
+            <ListItem
+              navBarItem
+              active={pathname == "/analytics"}
+              css={{ marginLeft: "-4px" }}
+            >
               {" "}
               Analytics
             </ListItem>
